@@ -2,6 +2,7 @@
   <nav>
     <router-link to="/login">登录</router-link>|
     <router-link to="/main">主页</router-link>
+    <h2>测试</h2>
   </nav>
   <router-view />
 </template>
