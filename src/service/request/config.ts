@@ -1,12 +1,18 @@
-let BASE_URL = ''
-const TIME_OUT = 10000
+// 1.区分环境变量方式一:
+// export const API_BASE_URL = 'https://coderwhy/org/dev'
+// export const API_BASE_URL = 'https://coderwhy/org/prod'
 
-if (process.env.NODE_ENV === 'development') {
-  BASE_URL = 'http://152.136.185.210:5000'
-} else if (process.env.NODE_ENV === 'production') {
-  BASE_URL = 'http://152.136.185.210:5000'
-} else {
-  BASE_URL = 'http://152.136.185.210:5000'
-}
+// 2.区分环境变量方式二:
+// let baseURL = ''
+// if (process.env.NODE_ENV === 'production') {
+//   baseURL = 'https://coderwhy/org/prod'
+// } else if (process.env.NODE_ENV === 'development') {
+//   baseURL = 'https://coderwhy/org/dev'
+// } else {
+//   baseURL = 'https://coderwhy/org/test'
+// }
 
-export { BASE_URL, TIME_OUT }
+// 3.区分环境变量方式三: 加载.env文件
+export const API_BASE_URL = process.env.VUE_APP_BASE_URL
+
+export const TIME_OUT = 10000
