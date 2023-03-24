@@ -19,17 +19,6 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/no-unused-vars': 'off',
-    'vue/no-unused-vars': 'off',
-    'vue/valid-v-slot': [
-      'error',
-      {
-        allowModifiers: true
-      }
-    ],
-    '@typescript-eslint/no-non-null-assertion': 'off',
-    'no-irregular-whitespace': 'off',
-    'vue/no-mutating-props': 'off'
+    '@typescript-eslint/explicit-module-boundary-types': 'off'
   }
 }

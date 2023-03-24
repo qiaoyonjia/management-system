@@ -1,17 +1,16 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="login">
-    <loginPanel class="login-panel" />
+    <login-panel />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import loginPanel from './cpns/login-panel.vue'
+import LoginPanel from './cpns/login-panel.vue'
 
 export default defineComponent({
   components: {
-    loginPanel
+    LoginPanel
   },
   setup() {
     return {}
@@ -27,9 +26,5 @@ export default defineComponent({
   width: 100%;
   height: 100%;
   background: url('../../assets/img/login-bg.svg');
-
-  .login-panel {
-    margin-top: -180px;
-  }
 }
 </style>

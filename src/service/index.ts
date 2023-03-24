@@ -1,12 +1,15 @@
-import HYRequest from './request/request'
-import { API_BASE_URL, TIME_OUT } from './request/config'
+// service统一出口
+import HYRequest from './request'
+import { BASE_URL, TIME_OUT } from './request/config'
+
 import localCache from '@/utils/cache'
 
 const hyRequest = new HYRequest({
-  baseURL: API_BASE_URL,
+  baseURL: BASE_URL,
   timeout: TIME_OUT,
-  interceptorHooks: {
+  interceptors: {
     requestInterceptor: (config) => {
+      // 携带token的拦截
       const token = localCache.getCache('token')
       if (token) {
         config.headers.Authorization = `Bearer ${token}`
@@ -17,7 +20,6 @@ const hyRequest = new HYRequest({
       return err
     },
     responseInterceptor: (res) => {
-      // return res.data
       return res
     },
     responseInterceptorCatch: (err) => {

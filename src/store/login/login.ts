@@ -5,15 +5,14 @@ import {
   requestUserInfoById,
   requestUserMenusByRoleId
 } from '@/service/login/login'
-
-import { IloginState } from './type'
-import { IRootState } from '../type'
-import { IAccount } from '@/service/login/type'
-
 import localCache from '@/utils/cache'
 import router from '@/router'
 
-const loginMoudel: Module<IloginState, IRootState> = {
+import { IAccount } from '@/service/login/type'
+import { ILoginState } from './types'
+import { IRootState } from '../types'
+
+const loginModule: Module<ILoginState, IRootState> = {
   namespaced: true,
   state() {
     return {
@@ -35,12 +34,10 @@ const loginMoudel: Module<IloginState, IRootState> = {
     }
   },
   actions: {
-    // 账号登录
     async accountLoginAction({ commit }, payload: IAccount) {
       // 1.实现登录逻辑
       const loginResult = await accountLoginRequest(payload)
       const { id, token } = loginResult.data
-      // 把token存入vuex
       commit('changeToken', token)
       localCache.setCache('token', token)
 
@@ -56,14 +53,10 @@ const loginMoudel: Module<IloginState, IRootState> = {
       commit('changeUserMenus', userMenus)
       localCache.setCache('userMenus', userMenus)
 
-      // 4.跳转到首页
+      // 4.跳到首页
       router.push('/main')
     },
-    // 手机号登录
-    // phoneLoginAction({ commit }, payload: any) {
-    //   console.log('phoneLoginAction', payload)
-    // }
-    loadlocalLogin({ commit }) {
+    loadLocalLogin({ commit }) {
       const token = localCache.getCache('token')
       if (token) {
         commit('changeToken', token)
@@ -80,4 +73,4 @@ const loginMoudel: Module<IloginState, IRootState> = {
   }
 }
 
-export default loginMoudel
+export default loginModule

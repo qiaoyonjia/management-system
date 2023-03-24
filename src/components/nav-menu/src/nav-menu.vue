@@ -1,22 +1,21 @@
 <template>
   <div class="nav-menu">
     <div class="logo">
-      <img src="~@/assets/img/logo.svg" alt="logo" class="img" />
-      <span class="title" v-if="!collapse">Vue3+TS</span>
+      <img class="img" src="~@/assets/img/logo.svg" alt="logo" />
+      <span v-if="!collapse" class="title">Vue3+TS</span>
     </div>
-
     <el-menu
       default-active="2"
       class="el-menu-vertical"
-      text-color="#fff"
-      active-text-color="#ffd04b"
-      background-color="#545c64"
       :collapse="collapse"
+      background-color="#0c2135"
+      text-color="#b7bdc3"
+      active-text-color="#0a60bd"
     >
-      <!-- 二级菜单 -->
-      <template v-for="(item, id) in userMenus" :key="item.id">
+      <template v-for="item in userMenus" :key="item.id">
+        <!-- 二级菜单 -->
         <template v-if="item.type === 1">
-          <!-- 二级菜单可以展开的标题 -->
+          <!-- 二级菜单的可以展开的标题 -->
           <el-submenu :index="item.id + ''">
             <template #title>
               <i v-if="item.icon" :class="item.icon"></i>
@@ -45,7 +44,9 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
-import { useStore } from 'vuex'
+import { useStore } from '@/store'
+
+// vuex - typescript  => pinia
 
 export default defineComponent({
   props: {
@@ -57,7 +58,6 @@ export default defineComponent({
   setup() {
     const store = useStore()
     const userMenus = computed(() => store.state.login.userMenus)
-
     return {
       userMenus
     }

@@ -6,7 +6,7 @@
       </el-aside>
       <el-container class="page">
         <el-header class="page-header">
-          <nav-header @foldChange="handelFoldChange" />
+          <nav-header @foldChange="handleFoldChange" />
         </el-header>
         <el-main class="page-content">Main</el-main>
       </el-container>
@@ -18,6 +18,7 @@
 import { defineComponent, ref } from 'vue'
 import NavMenu from '@/components/nav-menu'
 import NavHeader from '@/components/nav-header'
+
 export default defineComponent({
   components: {
     NavMenu,
@@ -25,13 +26,13 @@ export default defineComponent({
   },
   setup() {
     const isCollapse = ref(false)
-    const handelFoldChange = (isFold: boolean) => {
+    const handleFoldChange = (isFold: boolean) => {
       isCollapse.value = isFold
     }
 
     return {
       isCollapse,
-      handelFoldChange
+      handleFoldChange
     }
   }
 })

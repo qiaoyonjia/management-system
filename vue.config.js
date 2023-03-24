@@ -1,34 +1,38 @@
-// const path = require('path')
+const path = require('path')
 
 module.exports = {
-  // outputDir: './build',
+  // 1.配置方式一: CLI提供的属性
+  outputDir: './build',
   // publicPath: './',
   devServer: {
     proxy: {
-      '/api': {
-        target: 'http://111.230.245.205:8880/',
+      '^/api': {
+        target: 'http://152.136.185.210:5000',
         pathRewrite: {
           '^/api': ''
         },
-        ws: true,
         changeOrigin: true
       }
     }
   },
+  // 2.配置方式二: 和webpack属性完全一致, 最后会进行合并
   configureWebpack: {
     resolve: {
       alias: {
-        views: '@/views'
+        components: '@/components'
       }
     }
   }
   // configureWebpack: (config) => {
   //   config.resolve.alias = {
   //     '@': path.resolve(__dirname, 'src'),
-  //     views: '@/views'
+  //     components: '@/components'
   //   }
-  // },
+  // }
+  // 3.配置方式三:
   // chainWebpack: (config) => {
-  //   config.resolve.alias.set('@', path.resolve(__dirname, 'src')).set('views', '@/views')
+  //   config.resolve.alias
+  //     .set('@', path.resolve(__dirname, 'src'))
+  //     .set('components', '@/components')
   // }
 }
